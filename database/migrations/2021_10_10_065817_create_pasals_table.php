@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePasalTable extends Migration
+class CreatePasalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreatePasalTable extends Migration
      */
     public function up()
     {
-        Schema::create('pasal', function (Blueprint $table) {
+        Schema::create('pasals', function (Blueprint $table) {
             $table->id();
+            $table->string('pasal', 20)->index();
+            $table->integer('bab');
+            $table->string('judul_bab', 100);
             $table->timestamps();
         });
     }
