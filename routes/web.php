@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PasalController;
+use App\Http\Controllers\WebAyatController;
+use App\Http\Controllers\WebPasalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    // crud route pasal
+    Route::post('/storePasal', [WebPasalController::class, 'store']);
+    Route::put('/editPasal/{id}', [WebPasalController::class, 'update']);
+    Route::delete('/deletePasal/{id}', [WebPasalController::class, 'destroy']);
+
+    // crud route ayat
+    Route::post('/storeAyat', [WebAyatController::class, 'store']);
+    Route::put('/editAyat/{id}', [WebAyatController::class, 'update']);
+    Route::delete('/deleteAyat/{id}', [WebAyatController::class, 'destroy']);
 });
+
+// read pasal
+Route::get('/', [WebPasalController::class, 'index']);
+Route::get('/addpasalPage', [WebPasalController::class, 'addPage']);
+Route::get('/editPasal/{id}', [WebPasalController::class, 'editPage']);
+
+// read ayat
+Route::get('/ayat', [WebAyatController::class, 'index']);
+Route::get('/addayatPage', [WebAyatController::class, 'addPage']);
+Route::get('/editAyat/{id}', [WebAyatController::class, 'editPage']);
+
+/* Auth */
+Route::get('/login', [AuthController::class, 'indexLogin']);
+Route::get('/register', [AuthController::class, 'indexRegister']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout']);

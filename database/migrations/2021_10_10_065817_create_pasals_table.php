@@ -15,8 +15,8 @@ class CreatePasalsTable extends Migration
     {
         Schema::create('pasals', function (Blueprint $table) {
             $table->id();
-            $table->string('pasal', 20)->index();
-            $table->integer('bab');
+            $table->string('pasal', 20)->index()->unique('pasal');
+            $table->string('bab', 20);
             $table->string('judul_bab', 100);
             $table->timestamps();
         });

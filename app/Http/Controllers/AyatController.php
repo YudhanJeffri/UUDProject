@@ -14,7 +14,7 @@ class AyatController extends Controller
      */
     public function index()
     {
-        $data = Ayats::with('pasals')->get();
+        $data = Ayats::get();
         return response([
             'status' => 200,
             'message' => 'data terload',

@@ -60,7 +60,7 @@ class PasalController extends Controller
      */
     public function show($pasal)
     {
-        $data = Pasals::with('ayats')->find($pasal);
+        $data = Pasals::with('ayats')->where('pasal', $pasal)->get();
         if ($data == null) {
             return response([
                 'status' => 404,

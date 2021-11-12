@@ -36,13 +36,11 @@ Route::get('/uud', [PasalController::class, 'index']);
 Route::get('/uud/{pasal}', [PasalController::class, 'show']);
 Route::get('/uud/judulbab/{judul_bab}', [PasalController::class, 'searchJudulBab']);
 
-
 Route::get('/ayat', [AyatController::class, 'index']);
 Route::get('/ayat/{ayat}', [AyatController::class, 'show']);
 Route::get('/ayat/bunyi/{bunyi}', [AyatController::class, 'search']);
 
-
 // auth
-Route::post('/register', [AuthController::class, 'register']);
+Route::post('/registrasi', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');

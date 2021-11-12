@@ -16,7 +16,6 @@ class CreateAyatsTable extends Migration
         Schema::create('ayats', function (Blueprint $table) {
             $table->id();
             $table->string('pasal')->index();
-            $table->foreign('pasal')->references('pasal')->on('pasals');
             $table->integer('ayat');
             $table->text('bunyi');
             $table->timestamps();
