@@ -43,12 +43,12 @@
             </ul>
             @if ($halaman === 'pasal')
             <form class="d-flex ms-auto" action="/">
-              <input class="form-control me-2" type="search" name="search" placeholder="pasal, ayat" aria-label="Search" value="{{ request('search') }}">
+              <input class="form-control me-2" type="search" name="search" placeholder="pasal, bab, judul bab" aria-label="Search" value="{{ request('search') }}">
               <button class="btn btn-outline-primary me-5" type="submit">Search</button>
             </form>
             @elseif($halaman === 'ayat')
             <form class="d-flex ms-auto" action="/ayat">
-              <input class="form-control me-2" type="search" name="search" placeholder="pasal, ayat" aria-label="Search" value="{{ request('search') }}">
+              <input class="form-control me-2" type="search" name="search" placeholder="pasal, ayat, bunyi" aria-label="Search" value="{{ request('search') }}">
               <button class="btn btn-outline-primary me-5" type="submit">Search</button>
             </form>
             @endif

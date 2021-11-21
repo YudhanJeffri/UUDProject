@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ayats;
+use App\Models\Pasals;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -13,14 +14,27 @@ class WebAyatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function detailAyat($id)
+    {
+        $data = Ayats::get()->where('id', $id)->first();
+        $pasal = Pasals::get()->where('pasal', $data->pasal);
+
+        return view('ayat.detailAyat', [
+            'data' => $data,
+            'pasal' => $pasal
+        ]);
+    }
     public function index()
     {
 
         $notFound = "";
-        $data = Ayats::orderBy('ayat', 'ASC');
+
+        $ayat = Ayats::get();
+        $data = Ayats::orderByRaw('CONVERT(pasal, SIGNED) ASC');
         $filter = $data->filter(request(['search']))->paginate(8)->withQueryString();
 
-        if (count($data->get()) == 0) {
+        if (count($ayat) == 0) {
             $notFound = "Ayats tidak ditemukan";
         }
 

@@ -29,7 +29,6 @@
               </div>
               <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
             </form>
-            <small class="mt-3">Not registered?<a href="/register">Register Now!</a></small>
           </main>
     </div>
 </div>

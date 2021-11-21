@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ayats;
 use App\Models\Pasals;
 use Exception;
 use Illuminate\Http\Request;
@@ -13,17 +14,27 @@ class WebPasalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function detailPasal($id)
+    {
+        $data = Pasals::get()->where('id', $id)->first();
+        $ayat = Ayats::get()->where('pasal', $data->pasal);
+
+        return view('pasal.detailPasal', [
+            'data' => $data,
+            'ayat' => $ayat
+
+        ]);
+    }
     public function index()
     {
 
         $notFound = "";
-        $data = Pasals::orderBy('pasal', 'ASC');
+        $data = Pasals::orderByRaw('CONVERT(pasal, SIGNED) ASC');
+        $pasal = Pasals::get();
         $filter = $data->filter(request(['search']))->paginate(8)->withQueryString();
-
-        if (count($data->get()) == 0) {
+        if (count($pasal) == 0) {
             $notFound = "Pasal tidak ditemukan";
         }
-
         return view('pasal.index', [
             'halaman' => 'pasal',
             'pasal' => $filter,

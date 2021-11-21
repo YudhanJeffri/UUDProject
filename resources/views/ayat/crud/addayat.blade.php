@@ -28,7 +28,7 @@
       <div class="alert alert-danger">{{ $message }}</div>
       @enderror
       <div class="col-auto mb-5">
-        <button type="submit" class="btn btn-primary">Tambah Pasal</button>
+        <button type="submit" class="btn btn-primary">Tambah Ayat</button>
       </div>
     
 </form>

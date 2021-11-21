@@ -23,7 +23,7 @@
                 <p class="card-title">Judul Bab : {{ $data->judul_bab }}</p>
                 <div class="d-grid gap-2 mx-auto">
                   
-{{--                 <a href="{{ url('detailPasal') }}/{{ $data->id }}" class="btn btn-primary">Lihat Detail</a> --}}
+               <a href="{{ url('detailPasal') }}/{{ $data->id }}" class="btn btn-primary">Lihat Detail</a> 
                 @if ( Session::get('access_token') != null)
                   <a class="btn btn-primary" href="{{ url('editPasal') }}/{{ $data->id }}" class="btn btn-primary">Edit Pasal</a>
               @else

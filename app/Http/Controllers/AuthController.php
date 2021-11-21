@@ -48,6 +48,11 @@ class AuthController extends Controller
             'halaman' => 'pasal',
         ]);
     }
+    public function logout()
+    {
+        Session::flush();
+        return redirect('/');
+    }
     public function me(Request $request)
     {
         return $request->user();

@@ -18,7 +18,9 @@ class Ayats extends Model
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, function ($query, $search) {
-            return $query->where('ayat', 'like', '%' . $search . '%');
+            return $query->where('ayat', 'like', '%' . $search . '%')
+                ->orWhere('pasal', 'like', '%' . $search . '%')
+                ->orWhere('bunyi', 'like', '%' . $search . '%');
         });
     }
 }

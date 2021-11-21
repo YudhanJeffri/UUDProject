@@ -18,7 +18,9 @@ class Pasals extends Model
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, function ($query, $search) {
-            return $query->where('pasal', 'like', '%' . $search . '%');
+            return $query->where('pasal', 'like', '%' . $search . '%')
+            ->orWhere('bab', 'like', '%' . $search . '%')
+            ->orWhere('judul_bab', 'like', '%' . $search . '%');
         });
     }
 }

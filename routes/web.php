@@ -33,11 +33,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 Route::get('/', [WebPasalController::class, 'index']);
 Route::get('/addpasalPage', [WebPasalController::class, 'addPage']);
 Route::get('/editPasal/{id}', [WebPasalController::class, 'editPage']);
+Route::get('/detailPasal/{id}', [WebPasalController::class, 'detailPasal']);
+
 
 // read ayat
 Route::get('/ayat', [WebAyatController::class, 'index']);
 Route::get('/addayatPage', [WebAyatController::class, 'addPage']);
 Route::get('/editAyat/{id}', [WebAyatController::class, 'editPage']);
+Route::get('/detailAyat/{id}', [WebAyatController::class, 'detailAyat']);
+
 
 /* Auth */
 Route::get('/login', [AuthController::class, 'indexLogin']);
