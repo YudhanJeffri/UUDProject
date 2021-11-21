@@ -57,7 +57,7 @@
                   @if ( Session::get('access_token') != null)
                     <a class="btn btn-primary" href="{{ url('editAyat') }}/{{ $data->id }}" class="btn btn-primary">Edit Ayat</a>
                 @else
-                    <a class="btn btn-primary" href="/login" >Edit Buku</a>
+                    <a class="btn btn-primary" href="/login" >Edit Ayat</a>
                 @endif
                   </div>
                   @if (Session::get('access_token') != null)
