@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('/uud', [PasalController::class, 'store']);
     Route::put('/uud/{pasal}', [PasalController::class, 'update']);
-    Route::delete('/uud/{pasal}', [PasalController::class, 'delete']);
+    Route::delete('/uud/{pasal}', [PasalController::class, 'destroy']);
     Route::post('/ayat', [AyatController::class, 'store']);
     Route::put('/ayat/{ayat}', [AyatController::class, 'update']);
     Route::delete('/ayat/{ayat}', [AyatController::class, 'destroy']);

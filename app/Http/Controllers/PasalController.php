@@ -14,7 +14,7 @@ class PasalController extends Controller
      */
     public function index()
     {
-        $data = Pasals::with('ayats')->get();
+        $data = Pasals::get();
         return response([
             'status' => 200,
             'message' => 'data terload',
@@ -60,7 +60,7 @@ class PasalController extends Controller
      */
     public function show($pasal)
     {
-        $data = Pasals::with('ayats')->where('pasal', $pasal)->get();
+        $data = Pasals::where('pasal', $pasal)->get();
         if ($data == null) {
             return response([
                 'status' => 404,
@@ -83,7 +83,7 @@ class PasalController extends Controller
      */
     public function edit($id)
     {
-        $data = Pasals::with('ayats')->find($id);
+        $data = Pasals::find($id);
         if ($data == null) {
             return response([
                 'status' => 404,
@@ -105,13 +105,13 @@ class PasalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $pasal)
+    public function update(Request $request, $id)
     {
-        $data = Pasals::find($pasal);
+        $data = Pasals::find($id);
         if ($data == null) {
             return response([
                 'status' => 404,
-                'message' => "Tidak ada data dengan pasal $pasal",
+                'message' => "Tidak ada data dengan pasal $id",
             ], 404);
         } else {
             $data->update($request->all());
@@ -154,7 +154,7 @@ class PasalController extends Controller
     }
     public function searchJudulBab($judul_bab)
     {
-        $data = Pasals::with('ayats')->where('judul_bab', 'LIKE', "%$judul_bab%")->get();
+        $data = Pasals::where('judul_bab', 'LIKE', "%$judul_bab%")->get();
         if (count($data) > 0) {
             return response([
                 'status' => 200,

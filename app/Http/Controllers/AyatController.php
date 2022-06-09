@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ayats;
+use Exception;
 use Illuminate\Http\Request;
 
 class AyatController extends Controller
@@ -14,7 +15,8 @@ class AyatController extends Controller
      */
     public function index()
     {
-        $data = Ayats::get();
+        $data = Ayats::orderByRaw('CONVERT(pasal, SIGNED) ASC')->get();
+
         return response([
             'status' => 200,
             'message' => 'data terload',
@@ -58,13 +60,14 @@ class AyatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($ayat)
+    public function show($pasal)
     {
-        $data = Ayats::with('pasals')->find($ayat);
+        $data = Ayats::where('pasal', $pasal)->get();
+
         if ($data == null) {
             return response([
                 'status' => 404,
-                'message' => "Tidak ada data dengan ayat $ayat",
+                'message' => "Tidak ada data dengan pasal $pasal",
             ], 404);
         } else {
             return response([
@@ -102,15 +105,26 @@ class AyatController extends Controller
                 'message' => "Tidak ada data dengan ayat $ayat",
             ], 404);
         } else {
-            $data->update($request->all());
-            return response(
-                [
-                    'message' => 'Update successfully',
-                    'status' => 200,
-                    'data' => $data
-                ],
-                200
-            );
+            try {
+                $data->update($request->all());
+                return response(
+                    [
+                        'message' => 'Update successfully',
+                        'status' => 200,
+                        'data' => $data
+                    ],
+                    200
+                );
+            } catch (Exception $ex) {
+                return response(
+                    [
+                        'message' => 'kesalahan',
+                        'status' => 404,
+                        'data' => $ex
+                    ],
+                    404
+                );
+            }
         }
     }
 
@@ -142,7 +156,7 @@ class AyatController extends Controller
     }
     public function search($bunyi)
     {
-        $data = Ayats::with('pasals')->where('bunyi', 'LIKE', "%$bunyi%")->get();
+        $data = Ayats::where('bunyi', 'LIKE', "%$bunyi%")->get();
         if (count($data) > 0) {
             return response([
                 'status' => 200,

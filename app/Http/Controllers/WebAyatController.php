@@ -149,7 +149,7 @@ class WebAyatController extends Controller
     public function destroy($id)
     {
         try {
-            Ayats::destroy($id);
+            Ayats::destroy($id);    
             return redirect('/ayat')->with('statusSuccess', 'Ayat berhasil dihapus !');
         } catch (Exception $ex) {
             return redirect('/ayat')->with('statusError', 'Ayat gagal dihapus / terjadi kesalahan !');

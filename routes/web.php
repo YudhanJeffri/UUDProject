@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\PasalController;
+use App\Http\Controllers\WebAuthController;
 use App\Http\Controllers\WebAyatController;
 use App\Http\Controllers\WebPasalController;
 use Illuminate\Support\Facades\Route;
@@ -44,8 +43,8 @@ Route::get('/detailAyat/{id}', [WebAyatController::class, 'detailAyat']);
 
 
 /* Auth */
-Route::get('/login', [AuthController::class, 'indexLogin']);
-Route::get('/register', [AuthController::class, 'indexRegister']);
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::get('/login', [WebAuthController::class, 'indexLogin']);
+Route::get('/register', [WebAuthController::class, 'indexRegister']);
+Route::post('/register', [WebAuthController::class, 'register']);
+Route::post('/login', [WebAuthController::class, 'login']);
+Route::get('/logout', [WebAuthController::class, 'logout']);
